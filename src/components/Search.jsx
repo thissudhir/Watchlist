@@ -20,9 +20,8 @@ const Search = () => {
       .then((res) => res.json())
       .then((data) => {
         if (!data.error) {
-          // console.log("The data is ", data);
+          console.log("The data is ", data);
           setSearchResults(data.Search || []);
-          console.log("The Search data is ", searchResults);
         } else {
           setSearchResults([]);
         }

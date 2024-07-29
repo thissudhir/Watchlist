@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Login from "./pages/Login";
 import { GlobalProvider } from "./context/GlobalContext";
 import Watchlist from "./components/Watchlist";
+import MovieDetails from "./components/MovieDetails";
 
 const Layout = () => {
   return (
@@ -35,6 +36,7 @@ function App() {
 
             <Route path="login" element={<Login />} />
             <Route path="watchlist" element={<Watchlist />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

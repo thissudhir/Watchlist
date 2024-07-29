@@ -9,12 +9,16 @@ import {
 } from "@mui/material";
 import { GlobalContext } from "../context/GlobalContext";
 import { Bookmark, BookmarkAdd } from "@mui/icons-material";
-
+import { useNavigate } from "react-router-dom";
 const MovieCard = ({ movie }) => {
-  const { addMovieToWatchlist, addMovieToWatched, watchlist, watched } =
-    useContext(GlobalContext);
+  const navigate = useNavigate();
+  const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
   let storedMovie = watchlist.find((o) => o.imdbID === movie.imdbID);
   const addButtonDisabled = storedMovie ? true : false;
+
+  const handleCardClick = () => {
+    navigate(`/movie/${movie.imdbID}`);
+  };
   return (
     <Card
       sx={{
@@ -25,6 +29,7 @@ const MovieCard = ({ movie }) => {
           opacity: 1,
         },
       }}
+      onClick={handleCardClick}
     >
       <CardMedia
         component="img"

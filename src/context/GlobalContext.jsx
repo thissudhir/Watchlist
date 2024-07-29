@@ -55,6 +55,7 @@ export const GlobalProvider = (props) => {
       value={{
         user: state.user,
         watchlist: state.watchlist,
+
         addMovieToWatchlist,
         removeMovieFromWatchlist,
         loginUser,

@@ -13,7 +13,7 @@ const Search = () => {
     setquery(e.target.value);
 
     fetch(
-      `http://www.omdbapi.com/?apikey=${
+      `https://www.omdbapi.com/?apikey=${
         import.meta.env.VITE_REACT_OMDB_API_KEY
       }&s=${e.target.value}`
     )

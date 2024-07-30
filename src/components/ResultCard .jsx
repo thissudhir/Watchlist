@@ -9,12 +9,16 @@ import {
 import { BookmarkRemove } from "@mui/icons-material";
 import { GlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-export const ResultCard = ({ movie, type }) => {
+export const ResultCard = ({ movie }) => {
   const { removeMovieFromWatchlist } = useContext(GlobalContext);
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const handleCardClick = () => {
     navigate(`/movie/${movie.imdbID}`);
+  };
+  const handleButtonClick = (event) => {
+    event.stopPropagation();
+    removeMovieFromWatchlist(movie.imdbID);
   };
   return (
     <Card
@@ -49,7 +53,7 @@ export const ResultCard = ({ movie, type }) => {
           sx={{
             color: "red",
           }}
-          onClick={() => removeMovieFromWatchlist(movie.imdbID)}
+          onClick={handleButtonClick}
         >
           <BookmarkRemove />
         </Button>

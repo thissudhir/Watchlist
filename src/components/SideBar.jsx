@@ -8,12 +8,15 @@ import {
   Tooltip,
   MenuItem,
   Menu,
+  Drawer,
+  useMediaQuery,
 } from "@mui/material";
 import {
   HomeOutlined,
   Logout,
   KeyboardArrowDown,
   Login,
+  Menu as MenuIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
@@ -21,29 +24,19 @@ import { GlobalContext } from "../context/GlobalContext";
 const SideBar = () => {
   const { user, logoutUser } = useContext(GlobalContext);
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  return (
-    <Box
-      component="nav"
-      padding={"20px"}
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        height: "100%",
-        backgroundColor: "#f5f5f5",
-        width: "250px",
-        boxShadow: "2px 0 5px rgba(0,0,0,0.1)",
-      }}
-    >
+  const drawerContent = (
+    <Box role="presentation">
       <Box margin={"20px"}>
         <Typography variant="h4" fontWeight={"bold"} color={"#ff1744"}>
           Watchlists
@@ -66,6 +59,7 @@ const SideBar = () => {
           component={Link}
           to={"/"}
           sx={{ marginLeft: "10px", textDecoration: "none", color: "white" }}
+          onClick={toggleDrawer}
         >
           Home
         </Typography>
@@ -81,6 +75,7 @@ const SideBar = () => {
             color: "#333",
             "&:hover": { color: "#ff1744" },
           }}
+          onClick={toggleDrawer}
         >
           My list
         </Typography>
@@ -97,7 +92,7 @@ const SideBar = () => {
           width: "calc(100% - 40px)",
         }}
       >
-        <Avatar src="/path-to-user-image.jpg" />
+        <Avatar />
         <Box sx={{ ml: 2, flexGrow: 1 }}>
           <Typography fontWeight="bold" fontSize="0.9rem" color="text.primary">
             {user ? user : "Guest User"}
@@ -115,22 +110,67 @@ const SideBar = () => {
           onClick={handleClose}
         >
           {!user ? (
-            <Link
+            <MenuItem
+              component={Link}
               to={"/login"}
-              style={{ textDecoration: "none", color: "inherit" }}
+              sx={{ textDecoration: "none", color: "inherit" }}
+              onClick={toggleDrawer}
             >
-              <MenuItem>
-                <Login fontSize="small" sx={{ mr: 1 }} /> Login
-              </MenuItem>
-            </Link>
+              <Login fontSize="small" sx={{ mr: 1 }} /> Login
+            </MenuItem>
           ) : (
-            <MenuItem onClick={logoutUser}>
+            <MenuItem
+              onClick={() => {
+                logoutUser();
+
+                toggleDrawer();
+              }}
+            >
               <Logout fontSize="small" sx={{ mr: 1 }} /> Logout
             </MenuItem>
           )}
         </Menu>
       </Box>
     </Box>
+  );
+
+  return (
+    <>
+      {isSmallScreen ? (
+        <>
+          <IconButton onClick={toggleDrawer}>
+            <MenuIcon />
+          </IconButton>{" "}
+          <Drawer open={drawerOpen} onClose={toggleDrawer}>
+            <Box
+              sx={{
+                width: 250,
+                padding: "20px",
+                height: "100vh",
+              }}
+            >
+              {drawerContent}
+            </Box>
+          </Drawer>
+        </>
+      ) : (
+        <Box
+          component="nav"
+          padding={"20px"}
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            height: "100%",
+            backgroundColor: "#f5f5f5",
+            width: "250px",
+            boxShadow: "2px 0 5px rgba(0,0,0,0.1)",
+          }}
+        >
+          {drawerContent}
+        </Box>
+      )}
+    </>
   );
 };
 

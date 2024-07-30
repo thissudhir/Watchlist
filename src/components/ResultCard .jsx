@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
-import { Card, CardMedia, CardActions, Button } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardActions,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import { BookmarkRemove } from "@mui/icons-material";
 import { GlobalContext } from "../context/GlobalContext";
 
 export const ResultCard = ({ movie, type }) => {
   const { removeMovieFromWatchlist } = useContext(GlobalContext);
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
   return (
     <Card
       sx={{
@@ -12,7 +19,7 @@ export const ResultCard = ({ movie, type }) => {
         margin: "16px",
         position: "relative",
         "&:hover .hover-button": {
-          opacity: 1,
+          opacity: isSmallScreen ? 0 : 1,
         },
       }}
     >
@@ -27,13 +34,13 @@ export const ResultCard = ({ movie, type }) => {
           position: "absolute",
           top: -12,
           left: -25,
-          opacity: 0,
+          opacity: isSmallScreen ? 1 : 0,
           transition: "opacity 0.3s",
         }}
         className="hover-button"
       >
         <Button
-          size="small"
+          size="large"
           sx={{
             color: "red",
           }}

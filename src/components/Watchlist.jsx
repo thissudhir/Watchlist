@@ -8,8 +8,13 @@ const Watchlist = () => {
   return (
     <Box>
       <Typography
-        variant="h2"
-        sx={{ margin: "20px", textAlign: "center", color: "red" }}
+        variant="h1"
+        sx={{
+          margin: "20px",
+          textAlign: "center",
+          color: "red",
+          fontSize: { xs: "26px", sm: "32px", md: "48px" },
+        }}
       >
         Your Watchlist
       </Typography>
@@ -28,7 +33,12 @@ const Watchlist = () => {
       ) : (
         <Typography
           variant="h1"
-          sx={{ textAlign: "center", margin: "20px", color: "lightgray" }}
+          sx={{
+            textAlign: "center",
+            margin: "20px",
+            color: "lightgray",
+            fontSize: { xs: "26px", sm: "32px", md: "48px" },
+          }}
         >
           Your watchlist is empty. Add now!
         </Typography>

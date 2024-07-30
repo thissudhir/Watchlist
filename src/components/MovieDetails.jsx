@@ -45,14 +45,35 @@ const MovieDetails = () => {
   if (!movie) {
     return (
       <Box padding="20px">
-        <Typography variant="h5">Loading...</Typography>
+        <Typography
+          variant="h1"
+          sx={{
+            textAlign: "center",
+            margin: "20px",
+            color: "lightgray",
+            fontSize: { xs: "26px", sm: "32px", md: "48px" },
+          }}
+        >
+          Loading...
+        </Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ padding: "20px", display: "flex", gap: "20px" }}>
-      <Box sx={{ flex: "0 1 40%" }}>
+    <Box
+      sx={{
+        padding: "20px",
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        gap: "20px",
+      }}
+    >
+      <Box
+        sx={{
+          flex: { xs: "0 1 auto", md: "0 1 40%" },
+        }}
+      >
         <CardMedia
           component="img"
           height="auto"
@@ -61,7 +82,11 @@ const MovieDetails = () => {
           sx={{ width: "100%", borderRadius: "8px" }}
         />
       </Box>
-      <Box sx={{ flex: "1 1 60%" }}>
+      <Box
+        sx={{
+          flex: { xs: "0 1 auto", md: "1 1 60%" },
+        }}
+      >
         <CardContent>
           <Typography variant="h3" gutterBottom>
             {movie.Title}

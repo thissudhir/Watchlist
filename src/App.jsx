@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import {
   BrowserRouter,
   Navigate,
@@ -20,12 +20,7 @@ const Layout = () => {
       <Box>
         <SideBar />
       </Box>
-      <Divider
-        orientation="vertical"
-        flexItem
-        sx={{ borderRightWidth: 2, backgroundColor: "#f0f0f0" }}
-      />
-      <Box sx={{ flexGrow: 1, marginLeft: "250px" }}>
+      <Box sx={{ flexGrow: 1, marginLeft: { xs: "0", sm: "0", md: "250px" } }}>
         <Outlet />
       </Box>
     </Box>

@@ -40,7 +40,6 @@ const Search = () => {
           border: "1px solid #ced4da",
           borderRadius: "8px",
           padding: "10px 10px",
-          margin: "8px",
           width: "100%",
         }}
       >

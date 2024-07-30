@@ -8,10 +8,14 @@ import {
 } from "@mui/material";
 import { BookmarkRemove } from "@mui/icons-material";
 import { GlobalContext } from "../context/GlobalContext";
-
+import { useNavigate } from "react-router-dom";
 export const ResultCard = ({ movie, type }) => {
   const { removeMovieFromWatchlist } = useContext(GlobalContext);
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
+  const handleCardClick = () => {
+    navigate(`/movie/${movie.imdbID}`);
+  };
   return (
     <Card
       sx={{
@@ -22,6 +26,7 @@ export const ResultCard = ({ movie, type }) => {
           opacity: isSmallScreen ? 0 : 1,
         },
       }}
+      onClick={handleCardClick}
     >
       <CardMedia
         component="img"

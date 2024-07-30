@@ -38,7 +38,7 @@ const SideBar = () => {
   const drawerContent = (
     <Box role="presentation">
       <Box margin={"20px"}>
-        <Typography variant="h4" fontWeight={"bold"} color={"#ff1744"}>
+        <Typography variant="h4" fontWeight={"bold"} color={"red"}>
           Watchlists
         </Typography>
       </Box>
@@ -46,7 +46,7 @@ const SideBar = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          bgcolor: "#ff1744",
+          bgcolor: "red",
           color: "white",
           borderRadius: "8px",
           padding: "10px",
@@ -73,7 +73,7 @@ const SideBar = () => {
           sx={{
             textDecoration: "none",
             color: "#333",
-            "&:hover": { color: "#ff1744" },
+            "&:hover": { color: "red" },
           }}
           onClick={toggleDrawer}
         >

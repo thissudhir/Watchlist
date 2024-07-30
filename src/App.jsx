@@ -16,10 +16,16 @@ import MovieDetails from "./components/MovieDetails";
 
 const Layout = () => {
   return (
-    <Box display={"flex"} gap={"10px"} height={"100vh"}>
-      <SideBar />
-      <Divider orientation="vertical" />
-      <Box flexGrow={1}>
+    <Box display="flex">
+      <Box>
+        <SideBar />
+      </Box>
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{ borderRightWidth: 2, backgroundColor: "#f0f0f0" }}
+      />
+      <Box sx={{ flexGrow: 1, marginLeft: "250px" }}>
         <Outlet />
       </Box>
     </Box>
@@ -33,7 +39,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-
             <Route path="login" element={<Login />} />
             <Route path="watchlist" element={<Watchlist />} />
             <Route path="/movie/:id" element={<MovieDetails />} />

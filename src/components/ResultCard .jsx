@@ -35,11 +35,7 @@ export const ResultCard = ({ movie, type }) => {
         <Button
           size="small"
           sx={{
-            // backgroundColor: "rgba(255, 0, 0, 0.7)",
             color: "red",
-            "&:hover": {
-              // backgroundColor: "rgba(255, 0, 0, 1)",
-            },
           }}
           onClick={() => removeMovieFromWatchlist(movie.imdbID)}
         >

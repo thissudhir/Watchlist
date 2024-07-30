@@ -2,14 +2,20 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import MovieCard from "./MovieCard";
 import Search from "./Search";
+import { BookmarkAdd } from "@mui/icons-material";
 
 const Home = () => {
   return (
-    <Box flex={1} padding={"40px"} margin={"40px"}>
+    <Box padding="40px" margin="0 auto">
       <Box
-        sx={{ border: " 2px solid red", padding: "20px", borderRadius: "8px" }}
+        sx={{
+          border: "2px solid red",
+          padding: "20px",
+          borderRadius: "8px",
+          marginBottom: "40px",
+        }}
       >
-        <Typography variant="h3" marginBottom={"20px"}>
+        <Typography variant="h3" gutterBottom>
           Welcome to{" "}
           <Typography
             variant="h3"
@@ -19,18 +25,15 @@ const Home = () => {
             Watchlist
           </Typography>
         </Typography>
-        <Typography>
-          {" "}
-          Browser movies, add them to Watchlists and share it with friends.
+        <Typography variant="body1" paragraph>
+          Browser movies, add them to Watchlists, and share them with friends.
         </Typography>
-        <Typography>
-          {" "}
-          Just click the to add the movie, the poster to see more detail click
-          to the mark the movie as watched.
+        <Typography variant="body1" paragraph>
+          Just click <BookmarkAdd />
+          to add the movie, the poster to see more details .
         </Typography>
       </Box>
       <Search />
-      {/* <MovieCard /> */}
     </Box>
   );
 };

@@ -19,6 +19,10 @@ const MovieCard = ({ movie }) => {
   const handleCardClick = () => {
     navigate(`/movie/${movie.imdbID}`);
   };
+  const handleButtonClick = (event) => {
+    event.stopPropagation();
+    addMovieToWatchlist(movie);
+  };
   return (
     <Card
       sx={{
@@ -59,10 +63,9 @@ const MovieCard = ({ movie }) => {
           size="small"
           sx={{
             color: "red",
-            "&:hover": {},
           }}
           disabled={addButtonDisabled}
-          onClick={() => addMovieToWatchlist(movie)}
+          onClick={handleButtonClick}
         >
           <BookmarkAdd />
         </Button>

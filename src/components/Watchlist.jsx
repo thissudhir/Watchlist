@@ -7,7 +7,12 @@ const Watchlist = () => {
   const { watchlist } = useContext(GlobalContext);
   return (
     <Box>
-      <Typography variant="h2">Your Watchlist</Typography>
+      <Typography
+        variant="h2"
+        sx={{ margin: "20px", textAlign: "center", color: "red" }}
+      >
+        Your Watchlist
+      </Typography>
       {watchlist.length > 0 ? (
         <Box
           sx={{
@@ -21,11 +26,15 @@ const Watchlist = () => {
           ))}
         </Box>
       ) : (
-        <Typography variant="h5">Your watchlist is empty, Add now</Typography>
+        <Typography
+          variant="h1"
+          sx={{ textAlign: "center", margin: "20px", color: "lightgray" }}
+        >
+          Your watchlist is empty. Add now!
+        </Typography>
       )}
     </Box>
   );
 };
 
-<Box></Box>;
 export default Watchlist;

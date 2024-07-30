@@ -1,8 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Typography, Box, Card, CardMedia, CardContent } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Card,
+  CardMedia,
+  CardContent,
+  Grid,
+  Divider,
+} from "@mui/material";
 
-const MovieDetails = ({}) => {
+const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState("");
@@ -21,8 +29,7 @@ const MovieDetails = ({}) => {
           setError(data.Error);
         }
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+      .catch(() => {
         setError("An error occurred while fetching the movie details.");
       });
   }, [id]);
@@ -44,20 +51,121 @@ const MovieDetails = ({}) => {
   }
 
   return (
-    <Box padding="20px">
-      <Card>
+    <Box sx={{ padding: "20px", display: "flex", gap: "20px" }}>
+      <Box sx={{ flex: "0 1 40%" }}>
         <CardMedia
           component="img"
-          height="500"
+          height="auto"
           image={movie.Poster}
           alt={movie.Title}
+          sx={{ width: "100%", borderRadius: "8px" }}
         />
+      </Box>
+      <Box sx={{ flex: "1 1 60%" }}>
         <CardContent>
-          <Typography variant="h4">{movie.Title}</Typography>
-          <Typography variant="body1">{movie.Year}</Typography>
-          <Typography variant="body2">{movie.Plot}</Typography>
+          <Typography variant="h3" gutterBottom>
+            {movie.Title}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {movie.Year}
+          </Typography>
+          <Divider sx={{ my: 2 }} />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Plot:</strong> {movie.Plot}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Language:</strong> {movie.Language}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Country:</strong> {movie.Country}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Awards:</strong> {movie.Awards}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Rated:</strong> {movie.Rated}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Released:</strong> {movie.Released}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Runtime:</strong> {movie.Runtime}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Genre:</strong> {movie.Genre}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Director:</strong> {movie.Director}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Writer:</strong> {movie.Writer}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Actors:</strong> {movie.Actors}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Metascore:</strong> {movie.Metascore}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>IMDb Rating:</strong> {movie.imdbRating}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>IMDb Votes:</strong> {movie.imdbVotes}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2">
+                <strong>Type:</strong> {movie.Type}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body2">
+                <strong>Box Office:</strong> {movie.BoxOffice}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Box>
+                <Typography variant="body2">
+                  <strong>Ratings:</strong>{" "}
+                  {movie.Ratings.map((rating, index) => (
+                    <div key={index}>
+                      {rating.Source}: {rating.Value}
+                    </div>
+                  ))}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </CardContent>
-      </Card>
+      </Box>
     </Box>
   );
 };
